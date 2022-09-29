@@ -1,0 +1,56 @@
+---
+layout: default
+permalink: /js
+title: JS
+search_exclude: true
+---
+<body>
+    <div class="center-block" style="margin: 5% 0% 0% ; text-align:center; font-family: 'Trebuchet MS'; gilroy: serif; font-size: large"></div>
+    <form>
+        <label for="answer" class="button"></label>
+        <input type="text" name="answer" id="answer">
+        <button class="button" id = "addElement">Add Another value</button>
+        <button class="button" id = "Calculate">Calculate</button>
+    </form>
+    <div id="results"></div>
+    <p id="result"></p>
+    <style>
+        #result{
+            font-weight: bold;
+        }
+    </style>
+
+</body>
+<script> 
+    var array = [];
+    
+    var value;
+    var result;
+    var results = document.getElementById("results");
+    var calcButt = document.getElementById("Calculate");
+    var addElement = document.getElementById("addElement");
+    addElement.onclick = function addAnother(event){
+        event.preventDefault();
+        value = document.getElementById("answer").value;
+        array.push(parseFloat(value));
+        var newElement = document.createElement("p");
+        newElement.innerHTML = value;
+        results.appendChild(newElement);
+    }
+    calcButt.onclick = function(event){
+        event.preventDefault();
+        var sum1 = 0;
+        for (let i = 0; i < array.length; i++) {
+            
+            sum1 += (array[i]);
+        }
+        var mean = (sum1/array.length)
+        var sum = 0;
+        for (let i = 0; i < array.length; i++) {
+            
+            sum += Math.pow(array[i] - mean, 2);
+        }
+        result = Math.sqrt((sum/(array.length - 1)))
+        document.getElementById("result").innerHTML = (result.toFixed(2));
+    }
+</script> 
