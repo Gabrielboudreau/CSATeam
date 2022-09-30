@@ -1,13 +1,25 @@
-<form th:action="@{/imageconvert}"
-     method="post"
-    enctype="multipart/form-data"
-    >
-    <div>
-     
-    <label>Photos: </label>
+<!DOCTYPE HTML>
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/base}" lang="en">
+
+<head>
+  <title>Image Convert</title>
+</head>
+
+<body>
+<th:block layout:fragment="body" th:remove="tag">
+  
+  <form th:action="@{/imageconvert}"
+  method="post"
+  enctype="multipart/form-data"
+  >
+  <div>
+
+    <label for="image">Image: </label><br>
     <input type="file" name="image" accept="image/png, image/jpeg" />
-     
-    <label>Type: </label>
+    <br>
+    <label for="type">Type: </label><br>
     <select name="type" id="type">
       <option value="same">Same Image</option>
       <option value="ascii">Ascii Image</option>
@@ -16,9 +28,22 @@
       <option value="green">Greenscale Image</option>
       <option value="blue">Bluescale Image</option>
     </select>
-
+    <br>
     <input type="submit">
-    </div>
-    <img th:if="${image != null}" th:src="${image}">
-    <p th:if="${ascii != null}" th:text="${ascii}"></p>
-</form>
+  </div>
+  <img th:if="${image != null}" th:src="${image}">
+  <p th:if="${ascii != null}" th:text="${ascii}"></p>
+  </form>
+
+  <style>
+    form {
+      margin: 20px;
+    }
+    input, select {
+      margin-bottom: 10px;
+    }
+  </style>
+</th:block>
+</body>
+
+</html>

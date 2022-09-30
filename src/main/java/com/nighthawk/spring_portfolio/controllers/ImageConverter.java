@@ -78,7 +78,7 @@ public class ImageConverter {
         return img;
       }
       public static String ascii (BufferedImage img) {
-        return "";
+        return "Test Ascii";
       }
     }
 }
