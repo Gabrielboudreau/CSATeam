@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/base}" lang="en">
+
+<head>
+  <title>Currency Convert</title>
+</head>
+
+<body>
+<th:block layout:fragment="body" th:remove="tag">
+  
+  <form th:action="@{/currencyconvert}">
+  <div>
+    <label for="currency">Currency: </label><br>
+    <select name="currency" id="currency">
+      <option value="USD">Dollar</option>
+      <option value="GBP">Pound</option>
+      <option value="EUR">Euro</option>
+      <option value="CNY">Yuan</option>
+      <option value="INR">Rupee</option>
+      <option value="RUB">Rouble</option>
+    </select>
+    <br>
+    <label for="amount">Amount: </label><br>
+    <input type="number" name="amount" />
+    <br>
+    <input type="submit">
+  </div>
+  <table th:if="${results != null}">
+    <tr>
+      <th>Currency</th>
+      <th>Amount</th>
+    </tr>
+    <tr th:each="cur : ${results}">
+      <td th:text="${cur.key}"></td>
+      <td th:text="${cur.value}"></td>
+    </tr>
+  </table>
+  </form>
+
+  <style>
+    form {
+      margin: 20px;
+    }
+    input, select {
+      margin-bottom: 10px;
+    }
+  </style>
+</th:block>
+</body>
+
+</html>
