@@ -1,0 +1,24 @@
+<form th:action="@{/imageconvert}"
+     method="post"
+    enctype="multipart/form-data"
+    >
+    <div>
+     
+    <label>Photos: </label>
+    <input type="file" name="image" accept="image/png, image/jpeg" />
+     
+    <label>Type: </label>
+    <select name="type" id="type">
+      <option value="same">Same Image</option>
+      <option value="ascii">Ascii Image</option>
+      <option value="gray">Grayscale Image</option>
+      <option value="red">Redscale Image</option>
+      <option value="green">Greenscale Image</option>
+      <option value="blue">Bluescale Image</option>
+    </select>
+
+    <input type="submit">
+    </div>
+    <img th:if="${image != null}" th:src="${image}">
+    <p th:if="${ascii != null}" th:text="${ascii}"></p>
+</form>
