@@ -32,18 +32,19 @@ public class ImageConverter {
         return "imageconvert";
       }
       
-      BufferedImage output = ImageConversion.same(imBuff);
+      BufferedImage output = imBuff;
+      ImageConversion converter = new ImageConversion();
       if (type.equals("ascii")) {
-        model.addAttribute("ascii", ImageConversion.ascii(imBuff));
+        model.addAttribute("ascii", converter.ascii(imBuff));
         return "imageconvert";
       } else if (type.equals("gray")) {
-        output = ImageConversion.grayscale(imBuff);
+        output = converter.grayscale(imBuff);
       } else if (type.equals("red")) {
-        output = ImageConversion.redscale(imBuff);
+        output = converter.redscale(imBuff);
       } else if (type.equals("green")) {
-        output = ImageConversion.greenscale(imBuff);
+        output = converter.greenscale(imBuff);
       } else if (type.equals("blue")) {
-        output = ImageConversion.bluescale(imBuff);
+        output = converter.bluescale(imBuff);
       }
 
       String uniqueID = UUID.randomUUID().toString();
@@ -58,27 +59,5 @@ public class ImageConverter {
       model.addAttribute("image", "images/"+uniqueID+".png");
 
       return "imageconvert"; 
-    }
-
-    //actually converts images (TODO: impelement the functions)
-    static class ImageConversion {
-      public static BufferedImage same (BufferedImage img) {
-        return img;
-      }
-      public static BufferedImage grayscale (BufferedImage img) {
-        return img;
-      }
-      public static BufferedImage redscale (BufferedImage img) {
-        return img;
-      }
-      public static BufferedImage greenscale (BufferedImage img) {
-        return img;
-      }
-      public static BufferedImage bluescale (BufferedImage img) {
-        return img;
-      }
-      public static String ascii (BufferedImage img) {
-        return "Test Ascii";
-      }
     }
 }
