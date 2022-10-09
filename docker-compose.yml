@@ -1,6 +1,6 @@
 version: '3'
 services:
-  web:
+  web_t4:
     image: java_springv1
     build: .
     ports:
