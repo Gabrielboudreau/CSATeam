@@ -35,7 +35,7 @@ public class StatsApiController {
      /* 
       PUT a new dataset
      */
-    @PutMapping("/new")
+    @PostMapping("/new")
     public ResponseEntity<Dataset> newDataset(@RequestParam(name="data") List<Double> data, @RequestParam(name="name") String name) {
       StatsCalculator calc = new StatsCalculator(data);
       Dataset dataset = new Dataset(name, calc.toString(), calc.getMean(), calc.getMedian(), calc.getSD());
