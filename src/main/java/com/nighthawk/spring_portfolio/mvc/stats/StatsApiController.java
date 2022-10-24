@@ -19,6 +19,7 @@ public class StatsApiController {
     /*
     GET List of Datasets
      */
+    @CrossOrigin("*")
     @GetMapping("/all")
     public ResponseEntity<List<Dataset>> getJokes() {
         return new ResponseEntity<>( repository.findAll(), HttpStatus.OK);
@@ -27,6 +28,7 @@ public class StatsApiController {
     /*
     GET Specific Dataset
      */
+    @CrossOrigin("*")
     @GetMapping("/dataset/{name}")
     public ResponseEntity<List<Dataset>> getJokes(@PathVariable String name) {
         return new ResponseEntity<>( repository.findByNameIgnoreCase(name), HttpStatus.OK);
@@ -35,6 +37,7 @@ public class StatsApiController {
      /* 
       PUT a new dataset
      */
+    @CrossOrigin("*")
     @PostMapping("/new")
     public ResponseEntity<Dataset> newDataset(@RequestParam(name="data") List<Double> data, @RequestParam(name="name") String name) {
       StatsCalculator calc = new StatsCalculator(data);
