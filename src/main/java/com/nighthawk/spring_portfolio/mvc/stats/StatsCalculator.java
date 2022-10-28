@@ -47,7 +47,7 @@ public class StatsCalculator {
     double middle = 0;
 
     if(dataset.size() %2 == 0) {
-        middle = (dataset.get(dataset.size()/2 - 1) + dataset.get(dataset.size()/2-3)/2);
+        middle = (dataset.get(dataset.size()/2 - 1) + dataset.get(dataset.size()/2)) / 2;
     }
     else {
         middle = dataset.get(dataset.size() / 2);
@@ -75,4 +75,6 @@ public class StatsCalculator {
     }
     return output;
   }
+
 }
+
