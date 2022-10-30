@@ -23,16 +23,20 @@ public class Dataset {
     @Column()
     private Double standardDeviation;
 
+    @Column()
+    private String histogramImg;
+
     public Dataset() {
 
     }
 
-    public Dataset(String name, String data, Double mean, Double median, Double standardDeviation) {
+    public Dataset(String name, String data, Double mean, Double median, Double standardDeviation, String histogramImg) {
       this.name = name;
       this.data = data;
       this.mean = mean;
       this.median = median;
       this.standardDeviation = standardDeviation;
+      this.histogramImg = histogramImg;
     }
 
     public Long getId() {
@@ -77,5 +81,13 @@ public class Dataset {
 
     public void setStandardDeviation(Double standardDeviation) {
       this.standardDeviation = standardDeviation;
+    }
+
+    public String getHistogramImg () {
+      return this.histogramImg;
+    }
+
+    public void setHistogramImg (String histogramImg) {
+      this.histogramImg = histogramImg;
     }
 }
