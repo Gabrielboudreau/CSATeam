@@ -25,6 +25,8 @@ public class Dataset {
 
     @Column()
     private int count;
+
+    @Column()
     private String histogramImg;
 
     public Dataset() {
