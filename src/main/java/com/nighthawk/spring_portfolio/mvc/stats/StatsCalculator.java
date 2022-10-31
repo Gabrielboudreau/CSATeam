@@ -89,7 +89,7 @@ public class StatsCalculator {
   public String getHistogram() {
     HistogramDataset histo = new HistogramDataset();
     histo.addSeries(name, dataset.stream().mapToDouble(Double::doubleValue).toArray(), 8);
-    JFreeChart histogram = ChartFactory.createHistogram(name, "Frequency", "Values", histo, PlotOrientation.VERTICAL, false, false, false);
+    JFreeChart histogram = ChartFactory.createHistogram(name, "Values", "Frequency", histo, PlotOrientation.VERTICAL, false, false, false);
     
     String uniqueID = UUID.randomUUID().toString();
 
