@@ -23,16 +23,20 @@ public class Dataset {
     @Column()
     private Double standardDeviation;
 
+    @Column()
+    private int count;
+
     public Dataset() {
 
     }
 
-    public Dataset(String name, String data, Double mean, Double median, Double standardDeviation) {
+    public Dataset(String name, String data, Double mean, Double median, Double standardDeviation, int count) {
       this.name = name;
       this.data = data;
       this.mean = mean;
       this.median = median;
       this.standardDeviation = standardDeviation;
+      this.count = count;
     }
 
     public Long getId() {
@@ -78,4 +82,13 @@ public class Dataset {
     public void setStandardDeviation(Double standardDeviation) {
       this.standardDeviation = standardDeviation;
     }
+
+    public int getCount () {
+      return this.count;
+    }
+
+    public void setCount (int count) {
+      this.count = count; 
+    }
+    
 }
