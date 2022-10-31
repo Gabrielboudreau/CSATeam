@@ -35,3 +35,5 @@ build/
 graphs/*
 
 !graphs/placeholder.txt
+
+volumes/sqlite.db
