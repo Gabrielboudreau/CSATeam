@@ -12,10 +12,10 @@ public class MvcConfig implements WebMvcConfigurer {
  
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        exposeDirectory("graphs", registry);
+        exposeDirectory("volumes/graphs", "graphs", registry);
     }
      
-    private void exposeDirectory(String dirName, ResourceHandlerRegistry registry) {
+    private void exposeDirectory(String dirName, String name, ResourceHandlerRegistry registry) {
         Path uploadDir = Paths.get(dirName);
         String uploadPath = uploadDir.toFile().getAbsolutePath();
          
@@ -23,6 +23,6 @@ public class MvcConfig implements WebMvcConfigurer {
 
         System.out.println("file:/"+ uploadPath + "/");
          
-        registry.addResourceHandler("/" + dirName + "/**").addResourceLocations("file://" + uploadPath + "/");
+        registry.addResourceHandler("/" + name + "/**").addResourceLocations("file://" + uploadPath + "/");
     }
 }
