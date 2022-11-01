@@ -94,13 +94,13 @@ public class StatsCalculator {
     String uniqueID = UUID.randomUUID().toString();
 
     try {
-      File outputFile = new File("graphs/" + uniqueID + ".png");
+      File outputFile = new File("volumes/graphs/" + uniqueID + ".png");
       ChartUtilities.saveChartAsPNG(outputFile, histogram, 500, 500);
     } catch (IOException e) {
       System.out.println("Error saving the chart");
     }
 
-    return "/graphs/" + uniqueID + ".png";
+    return "/volumes/graphs/" + uniqueID + ".png";
   }
 }
 
