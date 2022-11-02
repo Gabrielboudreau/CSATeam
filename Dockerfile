@@ -5,6 +5,8 @@ WORKDIR /app
 RUN apk update && apk upgrade && \
     apk add --no-cache git
 RUN apk add freetype-dev
+RUN apk add ttf-dejavu
+RUN apk add fontconfig
 COPY ["pom.xml", "mvnw", "./"]
 COPY .mvn .mvn
 RUN ./mvnw install -Dspring-boot.repackage.skip=true
