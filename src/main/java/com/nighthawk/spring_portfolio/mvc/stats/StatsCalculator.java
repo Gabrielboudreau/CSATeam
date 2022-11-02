@@ -6,10 +6,16 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
+import org.jfree.chart.ChartColor;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BoxAndWhiskerRenderer;
+import org.jfree.data.statistics.DefaultBoxAndWhiskerCategoryDataset;
 import org.jfree.data.statistics.HistogramDataset;
 
 public class StatsCalculator {
@@ -86,21 +92,41 @@ public class StatsCalculator {
     return output;
   }
 
-  public String getHistogram() {
-    HistogramDataset histo = new HistogramDataset();
-    histo.addSeries(name, dataset.stream().mapToDouble(Double::doubleValue).toArray(), 8);
-    JFreeChart histogram = ChartFactory.createHistogram(name, "Values", "Frequency", histo, PlotOrientation.VERTICAL, false, false, false);
-    
+  private String writeToFile(JFreeChart chart, int width, int height) {
     String uniqueID = UUID.randomUUID().toString();
 
     try {
       File outputFile = new File("volumes/graphs/" + uniqueID + ".png");
-      ChartUtilities.saveChartAsPNG(outputFile, histogram, 500, 500);
+      ChartUtilities.saveChartAsPNG(outputFile, chart, width, height);
     } catch (IOException e) {
       System.out.println("Error saving the chart");
     }
 
     return "https://teamoops.nighthawkcoding.ml/graphs/" + uniqueID + ".png";
+  }
+
+  public String getHistogram() {
+    HistogramDataset histo = new HistogramDataset();
+    histo.addSeries(name, dataset.stream().mapToDouble(Double::doubleValue).toArray(), 8);
+    JFreeChart histogram = ChartFactory.createHistogram(name, "Values", "Frequency", histo, PlotOrientation.VERTICAL, false, false, false);
+
+    return writeToFile(histogram, 500, 500);
+  }
+
+  public String getBoxPlot() {
+    final DefaultBoxAndWhiskerCategoryDataset box = new DefaultBoxAndWhiskerCategoryDataset();
+    box.add(dataset, name, "");
+
+    BoxAndWhiskerRenderer renderer = new BoxAndWhiskerRenderer();   
+    renderer.setMeanVisible(false);
+
+    NumberAxis numberAxis = new NumberAxis("");
+    CategoryPlot categoryplot = new CategoryPlot(box, new CategoryAxis(""), numberAxis, renderer);
+    categoryplot.setOrientation(PlotOrientation.HORIZONTAL);
+    
+    JFreeChart boxplot = new JFreeChart(categoryplot);
+
+    return writeToFile(boxplot, 500, 200);
   }
 }
 
