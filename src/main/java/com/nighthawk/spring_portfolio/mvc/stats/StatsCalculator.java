@@ -100,7 +100,7 @@ public class StatsCalculator {
       System.out.println("Error saving the chart");
     }
 
-    return "/volumes/graphs/" + uniqueID + ".png";
+    return "https://teamoops.nighthawkcoding.ml/graphs/" + uniqueID + ".png";
   }
 }
 
