@@ -32,8 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 
-graphs/*
+volumes/graphs/*
 
-!graphs/placeholder.txt
+!volumes/graphs/placeholder.txt
 
 volumes/sqlite.db
