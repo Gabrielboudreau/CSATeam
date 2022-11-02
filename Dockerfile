@@ -4,7 +4,7 @@ FROM openjdk:16-alpine3.13
 WORKDIR /app
 RUN apk update && apk upgrade && \
     apk add --no-cache git
-RUN apk add libfreetype6-dev
+RUN apk add freetype-dev
 COPY ["pom.xml", "mvnw", "./"]
 COPY .mvn .mvn
 RUN ./mvnw install -Dspring-boot.repackage.skip=true
