@@ -136,14 +136,14 @@ public class StatsCalculator {
   public String getDotPlot(){
     XYSeriesCollection newDataSet = new XYSeriesCollection();
 
-    XYSeries series2 = new XYSeries(name);  
+    XYSeries series2 = new XYSeries("");  
 
     //add keys and values
 
     Map <Double, Integer> dataInputs = new HashMap<>();
     for(int i=0; i<dataset.size();i++){
         if(dataInputs.containsKey(dataset.get(i))){
-            dataInputs.put(dataset.get(i), dataInputs.get(dataInputs.get(dataset.get(i))+1));
+            dataInputs.put(dataset.get(i), dataInputs.get(dataset.get(i))+1);
         } else {
             dataInputs.put(dataset.get(i),1);
         }
@@ -157,7 +157,7 @@ public class StatsCalculator {
 
 
     JFreeChart chart = ChartFactory.createScatterPlot(  
-        "",   
+        name,   
         "", "", newDataSet, PlotOrientation.VERTICAL, false, false, false);  
 
     
