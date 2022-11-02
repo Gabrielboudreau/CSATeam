@@ -143,7 +143,7 @@ public class StatsCalculator {
     Map <Double, Integer> dataInputs = new HashMap<>();
     for(int i=0; i<dataset.size();i++){
         if(dataInputs.containsKey(dataset.get(i))){
-            dataInputs.put(dataset.get(i), dataInputs.get(dataset.get(i)+1));
+            dataInputs.put(dataset.get(i), dataInputs.get(dataInputs.get(i)+1));
         } else {
             dataInputs.put(dataset.get(i),1);
         }
