@@ -1,12 +1,24 @@
 package com.nighthawk.spring_portfolio.mvc.stats;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.statistics.HistogramDataset;
 
 public class StatsCalculator {
   List<Double> dataset;
-  public StatsCalculator (List<Double> dataset) {
+  String name;
+
+  public StatsCalculator (List<Double> dataset, String name) {
     this.dataset = dataset;
+    this.name = name;
 
     // needed for median & other purposes
     Comparator<Double> comparator = new Comparator<Double>() {
@@ -28,8 +40,6 @@ public class StatsCalculator {
 
         }
     };
-
-
     dataset.sort(comparator);
   }
 
@@ -76,5 +86,21 @@ public class StatsCalculator {
     return output;
   }
 
+  public String getHistogram() {
+    HistogramDataset histo = new HistogramDataset();
+    histo.addSeries(name, dataset.stream().mapToDouble(Double::doubleValue).toArray(), 8);
+    JFreeChart histogram = ChartFactory.createHistogram(name, "Values", "Frequency", histo, PlotOrientation.VERTICAL, false, false, false);
+    
+    String uniqueID = UUID.randomUUID().toString();
+
+    try {
+      File outputFile = new File("volumes/graphs/" + uniqueID + ".png");
+      ChartUtilities.saveChartAsPNG(outputFile, histogram, 500, 500);
+    } catch (IOException e) {
+      System.out.println("Error saving the chart");
+    }
+
+    return "https://teamoops.nighthawkcoding.ml/graphs/" + uniqueID + ".png";
+  }
 }
 
