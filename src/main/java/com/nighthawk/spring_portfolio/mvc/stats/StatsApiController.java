@@ -41,8 +41,7 @@ public class StatsApiController {
     @PostMapping("/new")
     public ResponseEntity<Dataset> newDataset(@RequestParam(name="data") List<Double> data, @RequestParam(name="name") String name) {
       StatsCalculator calc = new StatsCalculator(data, name);
-      Dataset dataset = new Dataset(name, calc.toString(), calc.getMean(), calc.getMedian(), calc.getSD(), data.size(), calc.getHistogram(), calc.getBoxPlot());
-      System.out.println(calc.getDotPlot());
+      Dataset dataset = new Dataset(name, calc.toString(), calc.getMean(), calc.getMedian(), calc.getSD(), data.size(), calc.getHistogram(), calc.getBoxPlot(), calc.getDotPlot());
       repository.save(dataset);
       return new ResponseEntity<>(dataset, HttpStatus.OK);
     }
