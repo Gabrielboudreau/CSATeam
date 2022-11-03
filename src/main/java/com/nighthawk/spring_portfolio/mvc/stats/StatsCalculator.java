@@ -6,6 +6,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import org.jfree.chart.ChartColor;
@@ -164,5 +166,37 @@ public class StatsCalculator {
     return writeToFile(chart, 500, 200);
 
   }
+
+  public String getStemPlot() {
+
+    TreeMap<Integer, List<Double>> stemPlot = new TreeMap<>();
+
+
+    for(int i = 0;  i < dataset.size(); i++) {
+        int stem = (int)(dataset.get(i) / 10.0);
+        double leaf = dataset.get(i) % 10;
+
+        if (!stemPlot.containsKey(stem)) {
+            stemPlot.put(stem, new ArrayList<>());
+        }
+        
+        stemPlot.get(stem).add(leaf);
+
+    }
+
+    String plot = new String();
+
+    for(Integer i : stemPlot.keySet()) {
+        if (i < 10) plot+= "| " + i + "  | ";
+        else plot += "| " + i + " | ";
+        for (Double j : stemPlot.get(i)) {
+            plot+=""+j+" ";
+        }
+        plot+="\n";
+    }
+
+    return plot;
+
+}
 }
 
