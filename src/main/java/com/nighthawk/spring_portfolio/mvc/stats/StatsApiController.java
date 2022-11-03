@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+import javax.servlet.http.HttpServletResponse;
+
 @RestController // annotation to simplify the creation of RESTful web services
 @RequestMapping("/api/stats")
 public class StatsApiController {
@@ -39,10 +41,11 @@ public class StatsApiController {
      */
     @CrossOrigin("*")
     @PostMapping("/new")
-    public ResponseEntity<Dataset> newDataset(@RequestParam(name="data") List<Double> data, @RequestParam(name="name") String name) {
+    public ResponseEntity<Dataset> newDataset(@RequestParam(name="data") List<Double> data, @RequestParam(name="name") String name, HttpServletResponse httpResponse) throws Exception {
       StatsCalculator calc = new StatsCalculator(data, name);
       Dataset dataset = new Dataset(name, calc.toString(), calc.getMean(), calc.getMedian(), calc.getSD(), data.size(), calc.getHistogram(), calc.getBoxPlot(), calc.getDotPlot());
       repository.save(dataset);
+      httpResponse.sendRedirect("https://gabrielboudreau.github.io/frontTeamCSA/statsCalc.html?" + name);
       return new ResponseEntity<>(dataset, HttpStatus.OK);
     }
 
