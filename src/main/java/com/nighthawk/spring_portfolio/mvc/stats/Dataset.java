@@ -32,11 +32,14 @@ public class Dataset {
     @Column()
     private String boxPlotImg;
 
+    @Column()
+    private String dotPlotImg;
+
     public Dataset() {
 
     }
 
-    public Dataset(String name, String data, Double mean, Double median, Double standardDeviation, int count, String histogramImg, String boxPlotImg) {
+    public Dataset(String name, String data, Double mean, Double median, Double standardDeviation, int count, String histogramImg, String boxPlotImg, String dotPlotImg) {
       this.name = name;
       this.data = data;
       this.mean = mean;
@@ -45,6 +48,7 @@ public class Dataset {
       this.count = count;
       this.histogramImg = histogramImg;
       this.boxPlotImg = boxPlotImg;
+      this.dotPlotImg = dotPlotImg;
     }
 
     public Long getId() {
@@ -113,5 +117,13 @@ public class Dataset {
 
     public void setBoxPlotImg (String boxPlotImg) {
       this.boxPlotImg = boxPlotImg;
+    }
+
+    public String getDotPlotImg (){
+      return this.dotPlotImg;
+    }
+
+    public void setDotPlotImg (String dotPlotImg){
+      this.dotPlotImg = dotPlotImg;
     }
 }

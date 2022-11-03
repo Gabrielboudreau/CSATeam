@@ -3,7 +3,9 @@ package com.nighthawk.spring_portfolio.mvc.stats;
 import java.io.File;
 import java.io.IOException;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.jfree.chart.ChartColor;
@@ -17,6 +19,8 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BoxAndWhiskerRenderer;
 import org.jfree.data.statistics.DefaultBoxAndWhiskerCategoryDataset;
 import org.jfree.data.statistics.HistogramDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 public class StatsCalculator {
   List<Double> dataset;
@@ -127,6 +131,38 @@ public class StatsCalculator {
     JFreeChart boxplot = new JFreeChart(categoryplot);
 
     return writeToFile(boxplot, 500, 200);
+  }
+
+  public String getDotPlot(){
+    XYSeriesCollection newDataSet = new XYSeriesCollection();
+
+    XYSeries series2 = new XYSeries("");  
+
+    //add keys and values
+
+    Map <Double, Integer> dataInputs = new HashMap<>();
+    for(int i=0; i<dataset.size();i++){
+        if(dataInputs.containsKey(dataset.get(i))){
+            dataInputs.put(dataset.get(i), dataInputs.get(dataset.get(i))+1);
+        } else {
+            dataInputs.put(dataset.get(i),1);
+        }
+
+
+      series2.add(dataset.get(i), dataInputs.get(dataset.get(i)));
+    }
+
+
+    newDataSet.addSeries(series2);
+
+
+    JFreeChart chart = ChartFactory.createScatterPlot(  
+        name,   
+        "", "", newDataSet, PlotOrientation.VERTICAL, false, false, false);  
+
+    
+    return writeToFile(chart, 500, 200);
+
   }
 }
 
