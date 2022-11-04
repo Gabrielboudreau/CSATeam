@@ -69,6 +69,7 @@ public class StatsCalculator {
     double middle = 0;
 
     if(dataset.size() %2 == 0) {
+        // need to take an average if even number of elements
         middle = (dataset.get(dataset.size()/2 - 1) + dataset.get(dataset.size()/2)) / 2;
     }
     else {
@@ -98,6 +99,7 @@ public class StatsCalculator {
     return output;
   }
 
+  // Utility function used when graphs are created
   private String writeToFile(JFreeChart chart, int width, int height) {
     String uniqueID = UUID.randomUUID().toString();
 
@@ -111,6 +113,7 @@ public class StatsCalculator {
     return "https://teamoops.nighthawkcoding.ml/graphs/" + uniqueID + ".png";
   }
 
+  // Graph functions utilize JFfreechart to generate plots
   public String getHistogram() {
     HistogramDataset histo = new HistogramDataset();
     histo.addSeries(name, dataset.stream().mapToDouble(Double::doubleValue).toArray(), 8);
