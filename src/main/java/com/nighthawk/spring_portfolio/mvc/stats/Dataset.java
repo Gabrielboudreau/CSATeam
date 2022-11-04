@@ -2,8 +2,9 @@ package com.nighthawk.spring_portfolio.mvc.stats;
 
 import javax.persistence.*;
 
-@Entity // Annotation to simplify creating an entity, which is a lightweight persistence domain object. Typically, an entity represents a table in a relational database, and each entity instance corresponds to a row in that table.
+@Entity
 public class Dataset {
+    // Fields listed here will be stored in the database
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -38,10 +39,12 @@ public class Dataset {
     @Column()
     private String stemPlot;
     
+    // No arguments constructor
     public Dataset() {
 
     }
 
+    // All arguments constructor
     public Dataset(String name, String data, Double mean, Double median, Double standardDeviation, int count, String histogramImg, String boxPlotImg, String dotPlotImg, String stemPlot) {
       this.name = name;
       this.data = data;
@@ -55,6 +58,7 @@ public class Dataset {
       this.stemPlot = stemPlot;
     }
 
+    // Getters and Setters
     public Long getId() {
       return this.id;
     }
