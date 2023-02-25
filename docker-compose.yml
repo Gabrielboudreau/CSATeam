@@ -1,7 +1,6 @@
 version: '3'
 services:
   web_t4:
-    platform: linux/arm/v7
     image: java_springv1_t4
     build: .
     ports:
