@@ -1,12 +1,12 @@
 
 # syntax=docker/dockerfile:1
-FROM eclipse-temurin:16-alpine
+FROM balenalib/raspberry-pi-openjdk:16
 WORKDIR /app
-RUN apk update && apk upgrade && \
-    apk add --no-cache git
-RUN apk add freetype-dev
-RUN apk add ttf-dejavu
-RUN apk add fontconfig
+RUN apt update && apk upgrade && \
+    apt install git
+RUN apt install freetype-dev
+RUN apt install ttf-dejavu
+RUN apt install fontconfig
 COPY ["pom.xml", "mvnw", "./"]
 COPY .mvn .mvn
 RUN ./mvnw install -Dspring-boot.repackage.skip=true
