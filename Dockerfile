@@ -1,6 +1,6 @@
 
 # syntax=docker/dockerfile:1
-FROM balenalib/raspberry-pi-openjdk:16
+FROM balenalib/raspberry-pi-openjdk:latest
 WORKDIR /app
 RUN apt update && apk upgrade && \
     apt install git
