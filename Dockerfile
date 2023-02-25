@@ -4,7 +4,7 @@ FROM balenalib/raspberry-pi-openjdk:8--stretch
 WORKDIR /app
 RUN apt update && \
     apt install git
-RUN apt install freetype-dev
+RUN apt install libfreetype-dev
 RUN apt install ttf-dejavu
 RUN apt install fontconfig
 COPY ["pom.xml", "mvnw", "./"]
