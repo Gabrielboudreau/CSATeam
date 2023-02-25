@@ -2,7 +2,7 @@
 # syntax=docker/dockerfile:1
 FROM balenalib/raspberry-pi-openjdk:8--stretch
 WORKDIR /app
-RUN apt update && apk upgrade && \
+RUN apt update && \
     apt install git
 RUN apt install freetype-dev
 RUN apt install ttf-dejavu
