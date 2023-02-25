@@ -110,7 +110,7 @@ public class StatsCalculator {
       System.out.println("Error saving the chart");
     }
 
-    return "https://teamoops.nighthawkcoding.ml/graphs/" + uniqueID + ".png";
+    return "https://stats-backend.rohanj.dev/graphs/" + uniqueID + ".png";
   }
 
   // Graph functions utilize JFfreechart to generate plots
