@@ -1,6 +1,6 @@
 
 # syntax=docker/dockerfile:1
-FROM balenalib/raspberry-pi-openjdk:8--stretch
+FROM docker pull eclipse-temurin:16-jdk
 WORKDIR /app
 RUN apt update && \
     apt install git
