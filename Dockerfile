@@ -3,10 +3,10 @@
 FROM eclipse-temurin:16-jdk
 WORKDIR /app
 RUN apt update && \
-    apt install git
-RUN apt install libfreetype6-dev
-RUN apt install ttf-dejavu
-RUN apt install fontconfig
+    apt install -y git
+RUN apt install -y libfreetype6-dev
+RUN apt install -y ttf-dejavu
+RUN apt install -y fontconfig
 COPY ["pom.xml", "mvnw", "./"]
 COPY .mvn .mvn
 RUN ./mvnw install -Dspring-boot.repackage.skip=true
