@@ -45,7 +45,7 @@ public class StatsApiController {
       StatsCalculator calc = new StatsCalculator(data, name);
       Dataset dataset = new Dataset(name, calc.toString(), calc.getMean(), calc.getMedian(), calc.getSD(), data.size(), calc.getHistogram(), calc.getBoxPlot(), calc.getDotPlot(), calc.getStemPlot());
       repository.save(dataset);
-      httpResponse.sendRedirect("https://gabrielboudreau.github.io/frontTeamCSA/statsCalc.html?" + name);
+      httpResponse.sendRedirect("https://rohanj.dev/stats/statsCalc.html?" + name);
       return new ResponseEntity<>(dataset, HttpStatus.OK);
     }
 
